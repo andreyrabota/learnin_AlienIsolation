@@ -1,6 +1,7 @@
 import sys
 import pygame
 from settings import Settings
+from ship import Ship
 
 
 class AlienIsolation:
@@ -14,6 +15,8 @@ class AlienIsolation:
             (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Alien Isolation")
 
+        self.ship = Ship(self)
+
     def run_game(self):
         """run main cicle of the game"""
         while True:
@@ -22,6 +25,7 @@ class AlienIsolation:
                 if event.type == pygame.QUIT:
                     sys.exit()
             self.screen.fill(self.settings.bg_color)
+            self.ship.blitme()
             # showing the screen
             pygame.display.flip()
 
