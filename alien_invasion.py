@@ -20,15 +20,41 @@ class AlienIsolation:
     def run_game(self):
         """run main cicle of the game"""
         while True:
-            #keyboard and mouse capture
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-            self.screen.fill(self.settings.bg_color)
-            self.ship.blitme()
-            # showing the screen
-            pygame.display.flip()
+            self._check_events()
+            self.ship.update()
+            self._update_screen()
 
+    def _check_events(self):
+        # keyboard and mouse capture
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_d:
+                    self.ship.moving_right = True
+                elif event.key == pygame.K_a:
+                    self.ship.moving_left = True
+                elif event.key == pygame.K_w:
+                    self.ship.moving_up = True
+                elif event.key == pygame.K_s:
+                    self.ship.moving_down = True
+
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_d:
+                    self.ship.moving_right = False
+                elif event.key == pygame.K_a:
+                    self.ship.moving_left = False
+                elif event.key == pygame.K_w:
+                    self.ship.moving_up = False
+                elif event.key == pygame.K_s:
+                    self.ship.moving_down = False
+
+
+    def _update_screen(self):
+        """update images on screen and renews the screen"""
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
+        pygame.display.flip()
 if __name__ == '__main__':
     # make an instance and start the game
     ai = AlienIsolation()
