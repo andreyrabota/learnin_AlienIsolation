@@ -8,10 +8,12 @@ class Ship():
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
         self.settings = ai_game.settings
-        #loads ship image and recieves rectang
+
+        # loads ship image and recieves rectang
         self.image = pygame.image.load('images/spaceship.png')
         self.rect = self.image.get_rect()
-        #ship starts at midbuttom
+
+        # ship starts at midbuttom
         self.x = float(self.rect.x)
         self.rect.midbottom = self.screen_rect.midbottom
         self.moving_right = False
